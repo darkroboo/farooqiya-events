@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Farooqiya Events: wedding packages</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@600&display=swap">
+<style>
+:root{
+  --navy:#0B1440; --navy2:#141E5C; --gold:#C9A24B; --gold-light:#E9D6A4; --gold-ink:#8A6A1C;
+  --cream:#FBF4E4; --cream2:#F3E8CE; --purple:#4B2E70; --purple-light:#8B6FB0;
+  --ink:#1E1B3A; --muted:#6B6482; --line:#E2D3AE;
+  --on-navy:#F4EFDD; --on-navy-muted:#B9B4D8;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--navy);scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16.5px;line-height:1.65}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:600;line-height:1.1;letter-spacing:.01em;margin:0}
+p{margin:0 0 1em}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.note{color:var(--muted);font-size:.88rem}
+.kicker{font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink)}
+
+.draft{background:var(--gold);color:#241a02;font-size:.85rem;font-weight:600;text-align:center;padding:8px 16px}
+
+/* Hero */
+.hero{position:relative;background:var(--navy);color:var(--on-navy);overflow:hidden;text-align:center}
+.mandala{position:absolute;width:340px;height:340px;opacity:.9;pointer-events:none}
+.mandala.tl{top:-90px;left:-90px}
+.mandala.br{bottom:-90px;right:-90px;transform:rotate(20deg)}
+.hero-in{position:relative;padding:64px 24px 60px;max-width:720px;margin:0 auto}
+.lotus{width:46px;height:46px;margin:0 auto 18px;display:block}
+.brandline{font-family:'Poppins',sans-serif;font-size:.8rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px}
+.hero h1{font-size:clamp(2.6rem,8vw,4.4rem);letter-spacing:.03em}
+.rule{width:64px;height:2px;background:var(--gold);margin:18px auto}
+.hero .tag{font-family:'Poppins',sans-serif;font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;color:var(--on-navy-muted);margin-bottom:22px}
+.kn{font-family:'Noto Serif Kannada','Noto Sans Kannada',serif;color:var(--gold-light);font-size:1.05rem;margin-bottom:26px}
+.contact{display:flex;flex-wrap:wrap;justify-content:center;gap:20px 30px;font-size:.94rem;color:var(--on-navy-muted);margin-bottom:26px}
+.contact span{display:inline-flex;align-items:center;gap:7px}
+.contact svg{width:16px;height:16px;fill:var(--gold)}
+.btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;font:inherit;font-family:'Poppins',sans-serif;font-weight:600;font-size:.92rem;text-decoration:none;border-radius:3px;padding:12px 24px;cursor:pointer;border:1.5px solid var(--gold);background:transparent;color:var(--on-navy);letter-spacing:.04em}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:#241a02}
+
+.sec{padding:64px 0}
+.sec-head{text-align:center;max-width:64ch;margin:0 auto 38px}
+.sec h2{font-size:clamp(1.9rem,4vw,2.6rem);margin:6px 0 10px}
+.sec .intro{color:var(--muted)}
+.divider{border:0;border-top:1px solid var(--line);max-width:1120px;margin:0 auto}
+
+/* Package cards */
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
+.pack{display:flex;flex-direction:column;padding:30px 26px;border-radius:6px;background:#fff;border:1px solid var(--line);position:relative}
+.pack.std{border:2px solid var(--gold)}
+.pack.prem{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.flag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#241a02;font-size:.76rem;font-weight:700;padding:3px 14px;border-radius:99px;letter-spacing:.05em;white-space:nowrap}
+.pack .kicker{display:block;text-align:center;margin-bottom:6px}
+.pack.prem .kicker{color:var(--gold-light)}
+.pack h3{font-size:1.9rem;text-align:center}
+.pack .tagline{color:var(--muted);font-size:.94rem;margin:8px 0 20px;text-align:center;min-height:2.6em}
+.pack.prem .tagline{color:var(--on-navy-muted)}
+.price{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.5rem;line-height:1;font-variant-numeric:tabular-nums;text-align:center}
+.price-sub{font-size:.86rem;color:var(--muted);margin:5px 0 20px;text-align:center}
+.pack.prem .price-sub{color:var(--on-navy-muted)}
+.pack ul.feat{list-style:none;margin:0;padding:0;flex:1}
+.pack li.f{position:relative;padding:0 0 9px 24px;font-size:.94rem}
+.pack li.f::before{content:"";position:absolute;left:2px;top:.55em;width:9px;height:5px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+
+/* Compare */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+table.cmp{border-collapse:collapse;width:100%;min-width:680px;font-size:.93rem}
+.cmp th,.cmp td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp thead th{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.1rem;background:var(--navy);color:var(--on-navy)}
+.cmp tbody th[scope=row]{font-weight:500;color:var(--muted);width:26%}
+.cmp .grp th{background:var(--cream2);color:var(--gold-ink);font-weight:700;font-size:.84rem;padding:8px 14px;letter-spacing:.03em;text-transform:uppercase}
+.cmp .yes{color:var(--purple);font-weight:700}
+.cmp .no{color:var(--muted)}
+.cmp tr:last-child td,.cmp tr:last-child th{border-bottom:0}
+
+/* Estimator */
+.est{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px}
+fieldset{border:0;margin:0 0 22px;padding:0}
+legend{font-weight:600;margin-bottom:8px;padding:0;font-family:'Poppins',sans-serif;font-size:.95rem}
+.radios{display:grid;gap:8px}
+.radios label{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--line);border-radius:6px;background:#fff;cursor:pointer}
+.radios label:has(input:checked){border-color:var(--gold);background:var(--cream2)}
+.radios input,.addons input{accent-color:var(--gold);width:18px;height:18px;flex:none}
+.field{margin-bottom:18px}
+.field label{display:flex;justify-content:space-between;gap:12px;font-weight:600;margin-bottom:4px;font-family:'Poppins',sans-serif;font-size:.94rem}
+.field output{color:var(--gold-ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.field input[type=range]{width:100%;accent-color:var(--gold)}
+.addons{display:grid;gap:6px}
+.addons label{display:flex;align-items:center;gap:10px;padding:6px 2px;cursor:pointer;font-size:.93rem}
+.addons .p{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.88rem}
+.addons label.inc{opacity:.65;cursor:default}
+.result{background:var(--navy);color:var(--on-navy);border-radius:8px;padding:24px 26px;align-self:start;position:sticky;top:16px}
+.rline{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(233,214,164,.25);font-size:.94rem}
+.rline span:first-child{color:var(--on-navy-muted)}
+.rline strong{font-variant-numeric:tabular-nums;text-align:right}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:16px}
+.total .big{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.1rem;font-variant-numeric:tabular-nums;color:var(--gold-light)}
+.compare3{margin:18px 0 0;padding:14px 16px;border-radius:6px;background:rgba(233,214,164,.12);font-size:.9rem}
+.compare3 p{margin:0 0 4px}
+.compare3 p:last-child{margin:0}
+
+/* Steps */
+.steps{list-style:none;margin:0 0 30px;padding:0;counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 28px}
+.steps li{counter-increment:s;padding-top:14px;border-top:3px solid var(--gold)}
+.steps li::before{content:counter(s);font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;color:var(--gold-ink);display:block;line-height:1;margin-bottom:6px}
+.steps b{display:block;margin-bottom:2px;font-family:'Poppins',sans-serif;font-size:.98rem}
+.steps span{color:var(--muted);font-size:.92rem}
+details{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 2px}
+summary{cursor:pointer;font-weight:600;font-family:'Poppins',sans-serif;font-size:.95rem}
+details ul{margin:10px 0 0;padding-left:1.2em;color:var(--muted)}
+
+footer{position:relative;background:var(--navy);color:var(--on-navy-muted);padding:48px 0 52px;text-align:center;overflow:hidden}
+footer .lotus{fill:none}
+footer h2{color:var(--on-navy);font-size:1.8rem;margin:14px 0 4px}
+footer .tag{font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px}
+footer p{max-width:60ch;margin-left:auto;margin-right:auto}
+
+@media (max-width:900px){
+  .packs,.est,.steps{grid-template-columns:1fr}
+  .sec{padding:48px 0}
+  .hero-in{padding:52px 20px 48px}
+  .result{position:static}
+  .mandala{width:220px;height:220px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="draft">Draft for review: prices, guest counts and inclusions below use your figures. Check them once more before sharing with clients.</div>
+
+<header class="hero">
+  <svg class="mandala tl" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#C9A24B" stroke-width="1.1" opacity=".5"><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="50"/><circle cx="100" cy="100" r="30"/><g><path d="M100 30 L108 50 L100 70 L92 50 Z"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(45 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(90 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(135 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(180 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(225 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(270 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(315 100 100)"/></g></g></svg>
+  <svg class="mandala br" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#C9A24B" stroke-width="1.1" opacity=".5"><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="50"/><circle cx="100" cy="100" r="30"/><g><path d="M100 30 L108 50 L100 70 L92 50 Z"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(45 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(90 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(135 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(180 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(225 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(270 100 100)"/><path d="M100 30 L108 50 L100 70 L92 50 Z" transform="rotate(315 100 100)"/></g></g></svg>
+  <div class="hero-in">
+    <svg class="lotus" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#E9D6A4" stroke-width="2"><path d="M32 40 C22 32 22 18 32 8 C42 18 42 32 32 40Z"/><path d="M32 40 C18 36 8 24 6 12 C20 14 30 24 32 40Z"/><path d="M32 40 C46 36 56 24 58 12 C44 14 34 24 32 40Z"/><path d="M8 46 C18 40 46 40 56 46 C46 54 18 54 8 46Z"/></g></svg>
+    <div class="brandline">Wedding &amp; Event Management</div>
+    <h1>Farooqiya Events</h1>
+    <div class="rule"></div>
+    <div class="tag">Wedding Organizer</div>
+    <div class="contact">
+      <span><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg>8792645628</span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 11.5 7.3 11.8.4.3 1 .3 1.4 0C13 21.5 20 15.4 20 10c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>Farooqiya Shaadi Mahal</span>
+    </div>
+    <div class="btns">
+      <a class="btn primary" href="#packages">See the packages</a>
+      <a class="btn" href="#estimate">Estimate your wedding</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="sec" id="packages">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">Choose your celebration</span><h2>Three ways to celebrate</h2><p class="intro">Every package includes food and catering, photography and videography, decoration, the hall and a coordinator on the day.</p></div>
+    <div class="packs" id="packCards"></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="sec" id="compare">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">Side by side</span><h2>Compare everything</h2><p class="intro">Every line, at a glance.</p></div>
+    <div class="tablewrap"><table class="cmp" id="cmp"></table></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="sec" id="estimate">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">Plan your budget</span><h2>Estimate your wedding</h2><p class="intro">Choose a package, set your guest count and add anything extra. This gives a starting estimate; we'll confirm the final quote after a visit.</p></div>
+    <div class="est">
+      <div>
+        <fieldset>
+          <legend>Package</legend>
+          <div class="radios" id="pkgRadios"></div>
+        </fieldset>
+        <div class="field"><label for="guests">Guests <output id="o_guests"></output></label><input id="guests" type="range" min="100" max="1200" step="10" value="450"></div>
+        <fieldset>
+          <legend>Extras</legend>
+          <div class="addons" id="addons"></div>
+        </fieldset>
+      </div>
+      <div class="result" role="status" aria-live="polite">
+        <div id="lines"></div>
+        <div class="total"><span>Estimated total</span><span class="big" id="grand"></span></div>
+        <div class="compare3" id="best"></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">Food is charged per plate, so the total moves with your guest count. Decoration and photography stay the same as in the package.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="sec" id="booking">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">The process</span><h2>How booking works</h2><p class="intro">From your first visit to the final handover, one team stays with you.</p></div>
+    <ol class="steps">
+      <li><b>Visit the mahal</b><span>See the space and talk through your ideas with us.</span></li>
+      <li><b>Choose a package and date</b><span>We hold your date once the booking advance is paid.</span></li>
+      <li><b>Plan together</b><span>Planning meetings for decor, menu, timeline and vendors.</span></li>
+      <li><b>Final walkthrough</b><span>We check every detail at the hall before the event.</span></li>
+      <li><b>Your event</b><span>Our team runs the day so your family can enjoy it.</span></li>
+      <li><b>Clean-up and handover</b><span>We restore the hall and close out the accounts with you.</span></li>
+    </ol>
+    <details>
+      <summary>Payment and cancellation terms (draft)</summary>
+      <ul>
+        <li>30% on booking to hold the date.</li>
+        <li>40% one month before the event.</li>
+        <li>30% three days before the event.</li>
+        <li>Cancellation and date-change terms to be set out in the written agreement.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <svg class="lotus" viewBox="0 0 64 64" aria-hidden="true" style="width:46px;height:46px;margin:0 auto"><g fill="none" stroke="#C9A24B" stroke-width="2"><path d="M32 40 C22 32 22 18 32 8 C42 18 42 32 32 40Z"/><path d="M32 40 C18 36 8 24 6 12 C20 14 30 24 32 40Z"/><path d="M32 40 C46 36 56 24 58 12 C44 14 34 24 32 40Z"/><path d="M8 46 C18 40 46 40 56 46 C46 54 18 54 8 46Z"/></g></svg>
+  <h2>Farooqiya Events</h2>
+  <div class="tag">Wedding &amp; Event Management</div>
+  <p>Full-service planning and execution, theme decor, hospitality, luxury catering and live stalls, photography and entertainment. Shimoga's first all-in-one wedding company.</p>
+  <p class="note">8792645628 &nbsp;\u00b7&nbsp; Farooqiya Shaadi Mahal</p>
+</footer>
+
+<script>
+(function(){
+  /* Basic, Standard and Premium use the owner's real figures for food, media and decor.
+     Guest counts for Standard and Premium are estimated from a similar per-plate rate to Basic
+     (about \u20B9420/plate) and should be confirmed. */
+  var PACKS=[
+    {id:'basic',name:'Basic',tag:'A well-run day with the essentials beautifully covered.',guests:450,food:190000,media:60000,decor:25000,
+     hl:['Hall for 1 day','Coordinator on the day','Simple stage and entrance decor','Photographer and videographer','Sound system and mics']},
+    {id:'std',name:'Standard',tag:'A fuller celebration with themed decor and a bigger team.',guests:500,food:230000,media:90000,decor:30000,
+     hl:['Hall for 1 day','Themed stage, entrance and aisle decor','Photo and video team with an album','DJ and sound','Coordinator plus 2 helpers and a guest desk','Welcome drinks and a menu tasting']},
+    {id:'prem',name:'Premium',tag:'Everything handled, with a designer look throughout.',guests:520,food:320000,media:165000,decor:60000,
+     hl:['Hall for 1 day','Designer stage and full-hall theming with fresh flowers','Full media team with highlight film and drone shots','DJ or live music','Lead coordinator, supervisor and 4 helpers','Two menu tastings, VIP guest handling and backup vendors']}
+  ];
+  PACKS.forEach(function(p){p.price=p.food+p.media+p.decor;p.plate=Math.round(p.food/p.guests);});
+
+  var GROUPS=[
+    ['Venue',[
+      ['Hall booking','1 day','1 day','1 day'],
+      ['Guests in the package price','450','500','520'],
+      ['Bride and groom rooms','\u2713','\u2713','\u2713']]],
+    ['Food',[
+      ['Food and catering','\u2713 Included','\u2713 Included','\u2713 Included'],
+      ['Price per plate if your count differs','\u20B9'+PACKS[0].plate,'\u20B9'+PACKS[1].plate,'\u20B9'+PACKS[2].plate],
+      ['Menu planning','Guidance','1 tasting','2 tastings'],
+      ['Welcome drinks','\u2014','\u2713','\u2713 With mocktail counter']]],
+    ['Decor',[
+      ['Entrance','Simple','Themed','Grand themed'],
+      ['Stage','Standard backdrop','Themed stage','Designer stage'],
+      ['Hall and aisle','\u2014','Aisle and table decor','Full-hall theming'],
+      ['Flowers','Artificial','Mixed','Fresh flowers featured'],
+      ['Lighting','Basic','Decorative','Designer and spotlights']]],
+    ['Photography and media',[
+      ['Photography and videography','\u2713 Photographer and videographer','\u2713 Photo and video team','\u2713 Full team'],
+      ['Album','\u2014','\u2713','\u2713'],
+      ['Drone shots','\u2014','\u2014','\u2713'],
+      ['Highlight film','\u2014','\u2014','\u2713']]],
+    ['Planning and coordination',[
+      ['Planning meetings','1','2 plus final walkthrough','3 plus final walkthrough'],
+      ['Day-of team','1 coordinator','Coordinator plus 2 helpers','Lead, supervisor plus 4 helpers'],
+      ['Vendor management','Basic','\u2713','\u2713 With backups on standby'],
+      ['Guest desk and seating help','\u2014','\u2713','\u2713 With VIP handling'],
+      ['Timeline and checklist','\u2713','\u2713','\u2713']]],
+    ['Sound and music',[
+      ['Sound and mics','Basic','Standard','Professional'],
+      ['Music','\u2014','DJ or playlist','DJ or live music'],
+      ['Bridal makeup','Add-on','Add-on','Add-on']]],
+    ['After the event',[
+      ['Clean-up and hall handover','\u2014','\u2713','\u2713'],
+      ['Phone support before the event','\u2713','\u2713','\u2713 Priority']]]
+  ];
+
+  var ADDONS=[
+    {id:'makeup',name:'Bridal makeup',price:15000,inc:[]},
+    {id:'mehendi',name:'Mehendi artist',price:8000,inc:[]},
+    {id:'flowers',name:'Fresh flower stage upgrade',price:40000,inc:[]},
+    {id:'music',name:'Live music or nadaswara',price:25000,inc:['prem']},
+    {id:'led',name:'LED screen and live streaming',price:30000,inc:[]},
+    {id:'fx',name:'Grand entry effects',price:12000,inc:[]},
+    {id:'day',name:'Extra hall day',price:30000,inc:[]},
+    {id:'pre',name:'Pre-wedding shoot',price:20000,inc:[]},
+    {id:'stalls',name:'Live food stalls',price:35000,inc:[]}
+  ];
+
+  function $(id){return document.getElementById(id);}
+  function inr(n){return '\u20B9'+Math.round(n).toLocaleString('en-IN');}
+
+  /* Cards */
+  var cards=$('packCards');
+  PACKS.forEach(function(p){
+    var d=document.createElement('div');
+    d.className='pack '+p.id;
+    var li=p.hl.map(function(x){return '<li class="f">'+x+'</li>';}).join('');
+    d.innerHTML=(p.id==='std'?'<span class="flag">Balanced choice</span>':'')+
+      '<span class="kicker">'+p.name+'</span><h3>'+p.name+'</h3><p class="tagline">'+p.tag+'</p>'+
+      '<div class="price">'+inr(p.price)+'</div>'+
+      '<div class="price-sub">for '+p.guests+' guests, all-inclusive</div>'+
+      '<ul class="feat">'+li+'</ul>';
+    cards.appendChild(d);
+  });
+
+  /* Comparison table */
+  var t='<thead><tr><th scope="col"><span class="sr">Feature</span></th>'+PACKS.map(function(p){return '<th scope="col">'+p.name+'</th>';}).join('')+'</tr></thead><tbody>';
+  GROUPS.forEach(function(g){
+    t+='<tr class="grp"><th colspan="4" scope="colgroup">'+g[0]+'</th></tr>';
+    g[1].forEach(function(r){
+      t+='<tr><th scope="row">'+r[0]+'</th>';
+      for(var i=1;i<=3;i++){
+        var v=r[i];
+        if(v==='\u2713'){t+='<td class="yes"><span aria-hidden="true">\u2713</span><span class="sr">Included</span></td>';}
+        else if(v.charAt(0)==='\u2713'){t+='<td><span class="yes" aria-hidden="true">\u2713</span><span class="sr">Included: </span> '+v.slice(2)+'</td>';}
+        else if(v==='\u2014'){t+='<td class="no"><span aria-hidden="true">\u2014</span><span class="sr">Not included</span></td>';}
+        else{t+='<td>'+v+'</td>';}
+      }
+      t+='</tr>';
+    });
+  });
+  $('cmp').innerHTML=t+'</tbody>';
+
+  /* Estimator */
+  var sel='basic';
+  var chosen={};
+  var radios=$('pkgRadios');
+  PACKS.forEach(function(p){
+    var l=document.createElement('label');
+    l.innerHTML='<input type="radio" name="pkg" value="'+p.id+'"'+(p.id===sel?' checked':'')+'> <span><b>'+p.name+'</b> <span class="note">from '+inr(p.price)+' for '+p.guests+' guests</span></span>';
+    l.querySelector('input').addEventListener('change',function(){sel=p.id;calc();});
+    radios.appendChild(l);
+  });
+  var addBox=$('addons'),addEls={};
+  ADDONS.forEach(function(a){
+    var l=document.createElement('label');
+    l.innerHTML='<input type="checkbox"> <span>'+a.name+'</span><span class="p"></span>';
+    var cb=l.querySelector('input');
+    cb.addEventListener('change',function(){chosen[a.id]=cb.checked;calc();});
+    addBox.appendChild(l);addEls[a.id]={label:l,cb:cb,price:l.querySelector('.p')};
+  });
+  function pack(id){return PACKS.filter(function(p){return p.id===id;})[0];}
+  function cost(pid,g){
+    var p=pack(pid),food=Math.round(g*p.food/p.guests),add=0;
+    ADDONS.forEach(function(a){if(chosen[a.id]&&a.inc.indexOf(pid)<0)add+=a.price;});
+    return {food:food,media:p.media,decor:p.decor,add:add,sum:food+p.media+p.decor+add};
+  }
+  function calc(){
+    var g=+$('guests').value;
+    $('o_guests').textContent=g;
+    ADDONS.forEach(function(a){
+      var e=addEls[a.id],inc=a.inc.indexOf(sel)>=0;
+      e.label.className=inc?'inc':'';
+      e.cb.disabled=inc;
+      e.price.textContent=inc?'Included':inr(a.price);
+    });
+    var c=cost(sel,g),p=pack(sel);
+    var h='<div class="rline"><span>'+p.name+' package, '+g+' guests</span><strong>'+inr(c.food+c.media+c.decor)+'</strong></div>';
+    if(c.add>0)h+='<div class="rline"><span>Extras</span><strong>'+inr(c.add)+'</strong></div>';
+    $('lines').innerHTML=h;
+    $('grand').textContent=inr(c.sum);
+    var rows='';
+    PACKS.forEach(function(q){rows+='<p>'+q.name+': '+inr(cost(q.id,g).sum)+'</p>';});
+    $('best').innerHTML='<p><b>Same guests and extras, each package</b></p>'+rows;
+  }
+  $('guests').addEventListener('input',calc);
+  calc();
+})();
+</script>
+</body>
+</html>
