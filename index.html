@@ -164,7 +164,7 @@ footer p{max-width:60ch;margin-left:auto;margin-right:auto}
 
 <section class="sec" id="packages">
   <div class="wrap">
-    <div class="sec-head"><span class="kicker">Choose your celebration</span><h2>Three ways to celebrate</h2><p class="intro">Every package includes food and catering, photography and videography, decoration, the hall and a coordinator on the day.</p></div>
+    <div class="sec-head"><span class="kicker">Choose your celebration</span><p class="intro">Every package includes food and catering, photography and videography, decoration and a coordinator on the day.</p></div>
     <div class="packs" id="packCards"></div>
   </div>
 </section>
@@ -246,18 +246,17 @@ footer p{max-width:60ch;margin-left:auto;margin-right:auto}
      Guest counts for Standard and Premium are estimated from a similar per-plate rate to Basic
      (about \u20B9420/plate) and should be confirmed. */
   var PACKS=[
-    {id:'basic',name:'Basic',tag:'A well-run day with the essentials beautifully covered.',guests:450,food:190000,media:60000,decor:25000,
-     hl:['Hall for 1 day','Coordinator on the day','Simple stage and entrance decor','Photographer and videographer','Sound system and mics']},
-    {id:'std',name:'Standard',tag:'A fuller celebration with themed decor and a bigger team.',guests:500,food:230000,media:90000,decor:30000,
-     hl:['Hall for 1 day','Themed stage, entrance and aisle decor','Photo and video team with an album','DJ and sound','Coordinator plus 2 helpers and a guest desk','Welcome drinks and a menu tasting']},
-    {id:'prem',name:'Premium',tag:'Everything handled, with a designer look throughout.',guests:520,food:320000,media:165000,decor:60000,
-     hl:['Hall for 1 day','Designer stage and full-hall theming with fresh flowers','Full media team with highlight film and drone shots','DJ or live music','Lead coordinator, supervisor and 4 helpers','Two menu tastings, VIP guest handling and backup vendors']}
+    {id:'basic',name:'Basic',tag:'A well-run day with the essentials beautifully covered.',guests:450,food:190000,media:60000,decor:25000,mehndi:20000,
+     hl:['Coordinator on the day','Simple stage and entrance decor','Photographer and videographer','Sound system and mics','Complimentary mehndi for the bride']},
+    {id:'std',name:'Standard',tag:'A fuller celebration with themed decor and a bigger team.',guests:500,food:230000,media:90000,decor:30000,mehndi:45000,
+     hl:['Themed stage, entrance and aisle decor','Photo and video team with an album','DJ and sound','Coordinator plus 2 helpers and a guest desk','Welcome drinks and a menu tasting','Complimentary mehndi for the bride and 1 guest of your choice']},
+    {id:'prem',name:'Premium',tag:'Everything handled, with a designer look throughout.',guests:520,food:320000,media:165000,decor:60000,mehndi:50000,
+     hl:['Designer stage and full-hall theming with fresh flowers','Full media team with highlight film and drone shots','DJ or live music','Lead coordinator, supervisor and 4 helpers','Two menu tastings, VIP guest handling and backup vendors','Complimentary mehndi for the bride and 2 guests of your choice']}
   ];
-  PACKS.forEach(function(p){p.price=p.food+p.media+p.decor;p.plate=Math.round(p.food/p.guests);});
+  PACKS.forEach(function(p){p.price=p.food+p.media+p.decor+p.mehndi;p.plate=Math.round(p.food/p.guests);});
 
   var GROUPS=[
     ['Venue',[
-      ['Hall booking','1 day','1 day','1 day'],
       ['Guests in the package price','450','500','520'],
       ['Bride and groom rooms','\u2713','\u2713','\u2713']]],
     ['Food',[
@@ -292,8 +291,7 @@ footer p{max-width:60ch;margin-left:auto;margin-right:auto}
   ];
 
   var ADDONS=[
-    {id:'makeup',name:'Bridal makeup',price:15000,inc:[]},
-    {id:'mehendi',name:'Mehendi artist',price:8000,inc:[]},
+    {id:'makeup',name:'Bridal makeup',min:20000,max:30000,step:1000,inc:[]},
     {id:'flowers',name:'Fresh flower stage upgrade',price:40000,inc:[]},
     {id:'music',name:'Live music or nadaswara',price:25000,inc:['prem']},
     {id:'led',name:'LED screen and live streaming',price:30000,inc:[]},
@@ -350,17 +348,39 @@ footer p{max-width:60ch;margin-left:auto;margin-right:auto}
   });
   var addBox=$('addons'),addEls={};
   ADDONS.forEach(function(a){
+    var isRange=(a.min!=null);
     var l=document.createElement('label');
-    l.innerHTML='<input type="checkbox"> <span>'+a.name+'</span><span class="p"></span>';
+    l.innerHTML='<input type="checkbox"> <span>'+a.name+(isRange?' <span class="note">('+inr(a.min)+'\u2013'+inr(a.max)+', depends on the look chosen)</span>':'')+'</span><span class="p"></span>';
     var cb=l.querySelector('input');
-    cb.addEventListener('change',function(){chosen[a.id]=cb.checked;calc();});
-    addBox.appendChild(l);addEls[a.id]={label:l,cb:cb,price:l.querySelector('.p')};
+    addBox.appendChild(l);
+    var rangeRow=null, rangeInput=null;
+    if(isRange){
+      rangeRow=document.createElement('div');
+      rangeRow.style.cssText='padding:2px 2px 10px 28px;display:none';
+      rangeRow.innerHTML='<input type="range" min="'+a.min+'" max="'+a.max+'" step="'+a.step+'" value="'+Math.round((a.min+a.max)/2)+'" style="width:100%;accent-color:var(--gold)">';
+      rangeInput=rangeRow.querySelector('input');
+      rangeInput.addEventListener('input',function(){chosen[a.id]=+rangeInput.value;calc();});
+      addBox.appendChild(rangeRow);
+    }
+    cb.addEventListener('change',function(){
+      if(isRange){
+        rangeRow.style.display=cb.checked?'block':'none';
+        chosen[a.id]=cb.checked?+rangeInput.value:false;
+      }else{
+        chosen[a.id]=cb.checked;
+      }
+      calc();
+    });
+    addEls[a.id]={label:l,cb:cb,price:l.querySelector('.p'),isRange:isRange,rangeRow:rangeRow,rangeInput:rangeInput};
   });
   function pack(id){return PACKS.filter(function(p){return p.id===id;})[0];}
   function cost(pid,g){
     var p=pack(pid),food=Math.round(g*p.food/p.guests),add=0;
-    ADDONS.forEach(function(a){if(chosen[a.id]&&a.inc.indexOf(pid)<0)add+=a.price;});
-    return {food:food,media:p.media,decor:p.decor,add:add,sum:food+p.media+p.decor+add};
+    ADDONS.forEach(function(a){
+      if(!chosen[a.id]||a.inc.indexOf(pid)>=0)return;
+      add+=(a.min!=null)?chosen[a.id]:a.price;
+    });
+    return {food:food,media:p.media,decor:p.decor,mehndi:p.mehndi,add:add,sum:food+p.media+p.decor+p.mehndi+add};
   }
   function calc(){
     var g=+$('guests').value;
@@ -369,10 +389,16 @@ footer p{max-width:60ch;margin-left:auto;margin-right:auto}
       var e=addEls[a.id],inc=a.inc.indexOf(sel)>=0;
       e.label.className=inc?'inc':'';
       e.cb.disabled=inc;
-      e.price.textContent=inc?'Included':inr(a.price);
+      if(a.min!=null){
+        if(inc){e.price.textContent='Included';if(e.rangeRow)e.rangeRow.style.display='none';}
+        else if(e.cb.checked){e.price.textContent=inr(chosen[a.id]||Math.round((a.min+a.max)/2));}
+        else{e.price.textContent=inr(a.min)+'\u2013'+inr(a.max);}
+      }else{
+        e.price.textContent=inc?'Included':inr(a.price);
+      }
     });
     var c=cost(sel,g),p=pack(sel);
-    var h='<div class="rline"><span>'+p.name+' package, '+g+' guests</span><strong>'+inr(c.food+c.media+c.decor)+'</strong></div>';
+    var h='<div class="rline"><span>'+p.name+' package, '+g+' guests</span><strong>'+inr(c.food+c.media+c.decor+c.mehndi)+'</strong></div>';
     if(c.add>0)h+='<div class="rline"><span>Extras</span><strong>'+inr(c.add)+'</strong></div>';
     $('lines').innerHTML=h;
     $('grand').textContent=inr(c.sum);
